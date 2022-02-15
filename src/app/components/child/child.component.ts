@@ -7,6 +7,7 @@ import {
   DoCheck,
   AfterContentInit,
   AfterContentChecked,
+  AfterViewInit,
   ViewChild,
   ContentChild,
   ElementRef,
@@ -17,7 +18,7 @@ import {
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.scss']
 })
-export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked {
+export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit {
   @Input() userName = '';
   @ViewChild('wrapper') wrapper!: ElementRef;
   @ContentChild('contentWrapper') content!: ElementRef;
@@ -49,5 +50,9 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentI
 
   ngAfterContentChecked() {
     console.log('ngAfterContentChecked triggered');
+  }
+
+  ngAfterViewInit() {
+    console.log('ngAfterViewInit - wrapper', this.wrapper);
   }
 }
