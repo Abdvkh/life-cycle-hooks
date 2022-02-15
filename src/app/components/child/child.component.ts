@@ -1,12 +1,25 @@
-import { Component, Input, OnChanges, OnInit, DoCheck, SimpleChanges } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  OnInit,
+  DoCheck,
+  SimpleChanges,
+  AfterContentInit,
+  ViewChild,
+  ContentChild,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-child',
   templateUrl: './child.component.html',
   styleUrls: ['./child.component.scss']
 })
-export class ChildComponent implements OnChanges, OnInit, DoCheck {
+export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentInit {
   @Input() userName = '';
+  @ViewChild('wrapper') wrapper!: ElementRef;
+  @ContentChild('contentWrapper') content!: ElementRef;
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('ngOnChanges triggered', changes);
@@ -26,5 +39,10 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck {
 
   ngDoCheck() {
     console.log('ngDoCheck triggered');
+  }
+
+  ngAfterContentInit() {
+    console.log('ngAfterContentInit - wrapper', this.wrapper);
+    console.log('ngAfterContentInit - contentWrapper', this.content);
   }
 }
