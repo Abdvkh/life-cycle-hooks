@@ -55,4 +55,8 @@ export class ChildComponent implements OnChanges, OnInit, DoCheck, AfterContentI
   ngAfterViewInit() {
     console.log('ngAfterViewInit - wrapper', this.wrapper);
   }
+
+  ngAfterViewChecked(): void {
+    console.log('ngAfterViewChecked triggered');
+  }
 }
